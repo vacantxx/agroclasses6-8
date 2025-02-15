@@ -1,0 +1,913 @@
+/* Основные стили и переменные */
+:root {
+    --primary-color: #194623;
+    --secondary-color: #FFD700;
+    --text-color: #2c3e50;
+    --background-fade: rgba(255, 255, 255, 0.9);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+/* Плавная прокрутка и основные стили */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    animation: fadeIn 0.5s ease-in;
+    position: relative;
+}
+
+/* Современный стиль шапки */
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2c5840 100%);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+}
+
+header:hover::before {
+    transform: translateX(100%);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+}
+
+header p {
+    margin: 20px auto 0;
+    font-size: 1.2em;
+    max-width: 800px;
+    line-height: 1.6;
+    opacity: 0.95;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin: 0;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+/* Улучшенные стили кнопок */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(145deg, var(--secondary-color), #FFC000);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    background: linear-gradient(145deg, #FFC000, var(--secondary-color));
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+/* Современные карточки курсов */
+.sections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.course-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.course-section {
+    flex: 0 1 350px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.course-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.course-section:hover .course-image img {
+    transform: scale(1.05);
+}
+
+.course-content {
+    padding: 20px;
+}
+
+.course-content h2 {
+    color: #2c3e50;
+    margin: 0 0 15px 0;
+    font-size: 20px;
+}
+
+.course-content .teacher {
+    margin-top: 15px;
+}
+
+.description {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (min-width: 1200px) {
+    .course-container {
+        flex-wrap: nowrap;
+    }
+    
+    .course-section {
+        flex: 0 1 calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+    .course-section {
+        flex: 0 1 calc(50% - 15px);
+    }
+}
+
+@media (max-width: 767px) {
+    .course-container {
+        gap: 40px;
+    }
+    
+    .course-section {
+        flex: 0 1 100%;
+    }
+
+    .section-title h2 {
+        font-size: 24px;
+        padding: 0 20px;
+    }
+}
+
+/* Улучшенные эффекты для изображений */
+img {
+    transition: transform 0.5s ease;
+}
+
+/* Дополнительные эффекты для текста */
+
+/* Анимация для появления элементов */
+.course-section {
+    animation: slideUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.course-section:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивный дизайн */
+@media (max-width: 1024px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-buttons {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .school-image {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .welcome-text {
+        width: 100%;
+    }
+}
+
+/* Дополнительные стили для улучшения читаемости */
+.welcome-text {
+    background: linear-gradient(145deg, var(--background-fade), rgba(255,255,255,0.95));
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 30px var(--shadow-color);
+}
+
+.welcome-text p {
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (min-width: 1200px) {
+    .sections {
+        flex-wrap: nowrap;
+    }
+    
+    .course-section {
+        flex: 0 1 calc(33.333% - 20px);
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+    .course-section {
+        flex: 0 1 calc(50% - 15px);
+        max-width: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .sections {
+        gap: 40px;
+    }
+    
+    .course-section {
+        flex: 0 1 100%;
+        max-width: none;
+        margin-bottom: 0;
+    }
+}
+
+/* Декоративные элементы */
+.decoration-leaf {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%2334495e20" d="M12 2L8 6h8l-4-4zm0 20l4-4H8l4 4z"/></svg>');
+    background-repeat: repeat;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.decoration-leaf.left {
+    top: -50px;
+    left: -50px;
+    transform: rotate(-45deg);
+}
+
+.decoration-leaf.right {
+    bottom: -50px;
+    right: -50px;
+    transform: rotate(135deg);
+}
+
+.header-icon {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header-icon i {
+    font-size: 48px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    animation: float 3s ease-in-out infinite;
+}
+
+.image-frame {
+    position: relative;
+    padding: 10px;
+    background: linear-gradient(45deg, #f1c40f20, #e74c3c20);
+    border-radius: 15px;
+}
+
+.image-frame::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #f1c40f, #e74c3c);
+    border-radius: 17px;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.divider-line {
+    height: 2px;
+    flex-grow: 1;
+    background: linear-gradient(to right, transparent, #34495e40, transparent);
+    max-width: 200px;
+}
+
+.section-divider i {
+    font-size: 24px;
+    margin: 0 20px;
+    color: #34495e;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Дополнительные анимации */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* Улучшения для кнопок */
+.btn i {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: scale(1.2);
+}
+
+/* Улучшения для заголовков */
+h2 i {
+    color: #f1c40f;
+    margin-right: 10px;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 0.8;
+    }
+}
+
+/* Стили для раздела о сотрудничестве */
+.partnership-info {
+    max-width: 1200px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.partnership-info h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.partnership-info p {
+    text-align: center;
+    font-size: 18px;
+    color: #34495e;
+    margin-bottom: 25px;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.benefits-list li {
+    margin: 15px 0;
+    padding: 15px 20px 15px 45px;
+    position: relative;
+    font-size: 16px;
+    color: #34495e;
+    transition: transform 0.3s ease;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.benefits-list li:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.benefits-list li i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #27ae60;
+    font-size: 18px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .partnership-info {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .benefits-list {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-list li {
+        font-size: 15px;
+        padding: 12px 15px 12px 40px;
+    }
+}
+
+/* Дополнительные стили для изображений в разделе техникума */
+.course-section .image-frame img {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Анимация для списка преимуществ */
+.benefits-list li {
+    animation: slideInRight 0.5s ease forwards;
+    opacity: 0;
+}
+
+.benefits-list li:nth-child(1) { animation-delay: 0.1s; }
+.benefits-list li:nth-child(2) { animation-delay: 0.2s; }
+.benefits-list li:nth-child(3) { animation-delay: 0.3s; }
+.benefits-list li:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Стили для дополнительных кнопок навигации */
+.additional-nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 30px auto;
+    max-width: 1000px;
+    padding: 0 20px;
+}
+
+.feature-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 25px;
+    min-width: 200px;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2);
+}
+
+.feature-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.3);
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.feature-btn i {
+    font-size: 24px;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+}
+
+.feature-btn:hover i {
+    transform: scale(1.2);
+}
+
+.feature-btn span {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Анимация появления кнопок */
+.feature-btn {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+.feature-btn:nth-child(1) { animation-delay: 0.1s; }
+.feature-btn:nth-child(2) { animation-delay: 0.2s; }
+.feature-btn:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .feature-btn {
+        min-width: 160px;
+        padding: 12px 20px;
+    }
+    
+    .feature-btn i {
+        font-size: 20px;
+    }
+    
+    .feature-btn span {
+        font-size: 14px;
+    }
+}
+
+/* Добавление стилей для заголовка секции */
+.section-title {
+    text-align: center;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+.section-title h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #27ae60, transparent);
+}
+
+.section-title i {
+    color: #27ae60;
+    margin-right: 10px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Специальные стили для страницы 6-го класса */
+.sixth-grade-page .sections {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.sixth-grade-page .course-section {
+    width: 350px;
+    flex-shrink: 0;
+    background: var(--background-fade);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 30px var(--shadow-color);
+    transition: all var(--transition-speed);
+    transform: translateY(0);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sixth-grade-page .course-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.sixth-grade-page .course-image {
+    margin-bottom: 25px;
+    overflow: visible;
+}
+
+.sixth-grade-page .image-frame {
+    padding: 10px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 12px;
+    overflow: visible;
+}
+
+.sixth-grade-page .course-section img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform var(--transition-speed);
+    display: block;
+}
+
+.sixth-grade-page .course-section:hover .image-frame img {
+    transform: scale(1.05);
+}
+
+.sixth-grade-page .course-section h2 {
+    color: #2c3e50;
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.sixth-grade-page .course-content h2 {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.sixth-grade-page .course-content h2 i {
+    color: var(--primary-color);
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.sixth-grade-page .teacher {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.sixth-grade-page .teacher-name {
+    color: #34495e;
+    font-size: 16px;
+    margin: 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.sixth-grade-page .teacher-name::before {
+    content: '👨‍🏫';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sixth-grade-page .section-title {
+    text-align: left;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+    .sixth-grade-page .sections {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sixth-grade-page .course-section {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+/* Специальные стили для главной страницы */
+.index-page .content-wrapper {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.index-page .nav-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 150px;
+}
+
+.index-page .nav-buttons .btn {
+    margin: 0;
+    text-align: center;
+}
+
+.index-page .school-image {
+    flex: 0 0 500px;
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
+
+.index-page .school-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.index-page .welcome-text {
+    flex: 1;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.index-page .welcome-text h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.index-page .welcome-text p {
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Адаптивность для главной страницы */
+@media (max-width: 1024px) {
+    .index-page .content-wrapper {
+        flex-direction: column;
+    }
+
+    .index-page .school-image {
+        flex: 0 0 auto;
+        max-height: 400px;
+    }
+
+    .index-page .nav-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .index-page .nav-buttons .btn {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+/* Добавление стилей для раздела 'История школы' */
+.history-section {
+    max-width: 800px; /* Установка максимальной ширины для текста */
+    margin: 0 auto; /* Центрирование блока */
+    padding: 20px; /* Отступы внутри блока */
+    background-color: #f9f9f9; /* Светлый фон для раздела */
+    border: 1px solid #ddd; /* Легкая рамка вокруг раздела */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Тень для глубины */
+}
+
+.history-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.history-content {
+    line-height: 1.6;
+    font-size: 16px;
+    color: #555;
+}
